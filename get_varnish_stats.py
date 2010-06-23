@@ -11,18 +11,27 @@ import re
 
 def main(argv):
     try:
-        if sys.argv[1]:
-            host = sys.argv[1]
-    except:
-        host = "127.0.0.1"
+        if len(argv) == 0:
+            usage()
+            sys.exit(2)
         
+        opts, args = getopt.getopt(argv, "h:p:", ["host=", "port="])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
         
-    try:
-        if sys.argv[2]:
-            port = sys.argv[2]
-    except:
-        port = 6082
-    
+    #
+    # defaults
+    #
+    host = "127.0.0.1"
+    port = 6082
+
+    for opt, arg in opts:
+        if opt in ("-h", "--host"):
+            host = arg
+        elif opt in ("-p", "--port"):
+            port = int(arg)
+
     get_stats(host, port)
 
 
