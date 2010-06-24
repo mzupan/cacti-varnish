@@ -102,13 +102,11 @@ def get_stats(host, port):
     threads_created = re.search("\d+  N worker threads created", out).group(0).split()[0]
     threads_running = re.search("\d+  N worker threads", out).group(0).split()[0]
     threads_not_created = re.search("\d+  N worker threads not created", out).group(0).split()[0]
-    threads_unable_create = re.search("\d+  N worker threads limited", out).group(0).split()[0]
     queued_requests = re.search("\d+  N queued work requests", out).group(0).split()[0]
     
     stats['threads_created'] = threads_created
     stats['threads_running'] = threads_running
     stats['threads_not_created'] = threads_not_created
-    stats['threads_unable_create'] = threads_unable_create
     stats['queued_requests'] = queued_requests
     
     
