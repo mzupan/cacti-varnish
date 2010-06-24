@@ -109,6 +109,17 @@ def get_stats(host, port):
     stats['threads_not_created'] = threads_not_created
     stats['queued_requests'] = queued_requests
     
+    #
+    # getting total bytes sent to client
+    #
+    sent_header = re.search("\d+  Total header bytes", out).group(0).split()[0]
+    sent_body = re.search("\d+  Total body bytes", out).group(0).split()[0]
+    sent_total = int(send_header) + int(sent_body)
+    
+    stats['sent_header'] = sent_header
+    stats['sent_body'] = sent_body
+    stats['sent_total'] = str(sent_total)
+    
     
     #
     # iterate through the dictionary
