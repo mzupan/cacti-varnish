@@ -114,7 +114,7 @@ def get_stats(host, port):
     #
     sent_header = re.search("\d+  Total header bytes", out).group(0).split()[0]
     sent_body = re.search("\d+  Total body bytes", out).group(0).split()[0]
-    sent_total = int(send_header) + int(sent_body)
+    sent_total = int(sent_header) + int(sent_body)
     
     stats['sent_header'] = sent_header
     stats['sent_body'] = sent_body
